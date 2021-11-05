@@ -1,0 +1,21 @@
+{
+  "name": "cogn-cli",
+  "version": "0.9.0",
+  "description": "",
+  "main": "bin/cli.js",
+  "bin": {
+    "cogn-cli": "bin/cli.js"
+  },
+  "keywords": [
+    "cli",
+    "cogn-cli"
+  ],
+  "author": "nenikola",
+  "license": "ISC",
+  "dependencies": {
+    "arg": "^5.0.1",
+    "aws-amplify": "^4.3.4",
+    "esm": "^3.2.25",
+    "inquirer": "^8.2.0"
+  }
+}

@@ -1,11 +1,12 @@
 {
   "name": "cogn-cli",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "",
   "main": "bin/cli.js",
   "bin": {
     "cogn-cli": "bin/cli.js"
   },
+  "bundleDependencies": true,
   "keywords": [
     "cli",
     "cogn-cli"

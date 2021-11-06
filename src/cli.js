@@ -1,10 +1,18 @@
 import { configure, newPassword, signIn } from './amplify';
 import { Commands } from './constants';
-import { parseArgumentsIntoOptions, promptForMissingOptions } from './helpers';
+import {
+  helpPrinter,
+  parseArgumentsIntoOptions,
+  promptForMissingOptions,
+} from './helpers';
 export async function cli(args) {
   let options = parseArgumentsIntoOptions(args);
   options = await promptForMissingOptions(options);
 
+  if (options.help) {
+    helpPrinter();
+    return;
+  }
   configure(options.region, options.poolId, options.clientId);
   switch (options.command) {
     case Commands.SIGN_IN:
@@ -18,5 +26,4 @@ export async function cli(args) {
       await newPassword(options.uname, options.pass, options.newpass);
       break;
   }
-  console.log(options);
 }

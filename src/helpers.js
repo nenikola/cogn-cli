@@ -4,6 +4,10 @@ import { Commands } from './constants';
 
 export async function promptForMissingOptions(options) {
   let questions = [];
+  if (options.help) {
+    return options;
+  }
+
   if (options.command == Commands.NEW_PASSWORD && !options.newpassword) {
     questions.push({
       type: 'password',
@@ -83,6 +87,7 @@ export async function promptForMissingOptions(options) {
 export function parseArgumentsIntoOptions(rawArgs) {
   const args = arg(
     {
+      '--help': Boolean,
       '--region': String,
       '--poolId': String,
       '--clientId': String,
@@ -96,6 +101,7 @@ export function parseArgumentsIntoOptions(rawArgs) {
     }
   );
   return {
+    help: args['--help'] || '',
     poolId: args['--poolId'] || '',
     clientId: args['--clientId'] || '',
     uname: args['--username'] || '',
@@ -105,4 +111,48 @@ export function parseArgumentsIntoOptions(rawArgs) {
     idtoken: args['--idtoken'] || false,
     command: args._[0],
   };
+}
+
+function helpOptionStringer(option) {
+  const numofchars = 13;
+  const dif = numofchars - option.length;
+  if (dif > 0) {
+    return option + ' '.repeat(dif);
+  }
+  return option;
+}
+export function helpPrinter() {
+  console.log(
+    'hello from cogn-cli - your lifesaving jacket when authenticating with cognito\n'
+  );
+  console.log('\tcogn-cli [option] command');
+  console.log('command:');
+  console.log('\t' + helpOptionStringer('signin') + ' - signin user');
+  console.log(
+    '\t' +
+      helpOptionStringer('newpassword') +
+      ' - complete new password challenge for admin created user'
+  );
+  console.log('option:');
+  console.log('\t' + helpOptionStringer('--help') + ' - show help');
+  console.log('\t' + helpOptionStringer('--region') + ' - aws region');
+  console.log('\t' + helpOptionStringer('--clientId') + ' - cognito client id');
+  console.log(
+    '\t' +
+      helpOptionStringer('--username') +
+      ' - username of the user you are trying to signin'
+  );
+  console.log(
+    '\t' +
+      helpOptionStringer('--password') +
+      ' - password of the user you are trying to signin'
+  );
+  console.log(
+    '\t' +
+      helpOptionStringer('--newpassword') +
+      ' - new password when invoking newpassword command'
+  );
+  console.log(
+    '\t' + helpOptionStringer('--idtoken') + ' - return only idtoken'
+  );
 }

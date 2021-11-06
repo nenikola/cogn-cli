@@ -1,4 +1,4 @@
-import { Auth } from 'aws-amplify';
+import { Auth } from '@aws-amplify/auth';
 
 export function configure(region, poolId, clientId) {
   Auth.configure({

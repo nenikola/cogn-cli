@@ -1,6 +1,6 @@
 {
   "name": "cogn-cli",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "",
   "main": "bin/cli.js",
   "bin": {
@@ -18,8 +18,8 @@
   "author": "nenikola",
   "license": "MIT",
   "dependencies": {
+    "@aws-amplify/auth": "^4.3.12",
     "arg": "^5.0.1",
-    "aws-amplify": "^4.3.4",
     "esm": "^3.2.25",
     "inquirer": "^8.2.0"
   }
